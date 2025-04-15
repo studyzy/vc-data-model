@@ -98,132 +98,78 @@ pre .comment {
 </style>
   </head>
   <body>
-    <section id='abstract'>
-      <p>
-This document is a comparison of Verifiable Claims, SAML, and OpenID Connect.
-      </p>
-    </section>
+  <section id='abstract'>
+    <p>
+      本文档比较了可验证声明（Verifiable Claims）、SAML 和 OpenID Connect。
+    </p>
+  </section>
 
-    <section id='sotd'>
-      <p>
-Comments regarding this document are welcome. Please file issues
-directly on <a href="https://github.com/w3c/vc-data-model/issues/">GitHub</a>,
-or send them to
-<a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
-(<a href="mailto:public-vc-comments-request@w3.org?subject=subscribe">subscribe</a>,
-<a href="https://lists.w3.org/Archives/Public/public-vc-comments/">archives</a>).
-      </p>
-    </section>
+  <section id='sotd'>
+    <p>
+      欢迎对本文档提出意见。请直接在
+      <a href="https://github.com/w3c/vc-data-model/issues/">GitHub</a>
+      上提交问题，或发送至
+      <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
+      (<a href="mailto:public-vc-comments-request@w3.org?subject=subscribe">订阅</a>，
+      <a href="https://lists.w3.org/Archives/Public/public-vc-comments/">存档</a>)。
+    </p>
+  </section>
 
-    <section>
-      <h1>Comparison of Verifiable Credentials with SAML and OIDC</h1>
+  <section>
+    <h1>可验证凭证与 SAML 和 OIDC 的比较</h1>
 
-      <p>
-Existing federated identity management (FIM) systems suffer from a
-number of problems, in particular with regard to their trust model,
-economic models and the privacy of their users.
-      </p>
+    <p>
+      现有的联合身份管理（FIM）系统存在许多问题，特别是在信任模型、经济模型以及用户隐私方面。
+    </p>
 
-      <p>
-The FIM trust model requires the Identity Provider (IdP)
-to trust the Service Provider (SP) to preserve the privacy of the user’s
-identity attributes (or credentials) that it is asserting, and the SP to
-trust that the IdP is the authoritative source of all of the user’s
-identity attributes. Both of these trust requirements are problematic.
-No single IdP is the authoritative source of all a user’s identity
-attributes, and users may, for very good reason, want to present their
-identity attributes to SPs that IdPs do not fully trust. Consequently
-IdPs are not willing or able to release the user attributes that SPs
-require in order to provide users with the fine grained authorization
-they need. “Insufficient attribute release by IdPs is considered by user
-communities as the major problem today in the eduGAIN space” [4]. This
-necessitates the pulling of user identity attributes from other
-Attribute Authorities (AAs). In order to solve this 'attribute
-aggregation' problem, the assignment of a persistent globally unique
-identifier to each user is proposed by many [5, 6]. But this has severe
-privacy implications for the user, as it provides a correlating handle
-that can be used to track the user everywhere. Worse still, IdPs do not
-provide their users with any service to most SPs, since the latter are
-not part of the IdP’s federation, and so are considered to be not
-trusted. Finally, the IdPs are the center of the identity eco-system,
-and issue short-lived identity assertions [7] or tokens [8] on demand to
-trusted SPs. Consequently, they know which SPs the user is visiting and
-when, which is privacy invasive and allows them to track the user.
-      </p>
+    <p>
+      FIM 的信任模型要求身份提供者（IdP）信任服务提供者（SP）能够保护其断言的用户身份属性（或凭证）的隐私，同时要求 SP 信任 IdP 是所有用户身份属性的权威来源。这两个信任要求都存在问题。没有单一的 IdP 是所有用户身份属性的权威来源，用户可能出于正当理由希望向 IdP 不完全信任的 SP 提供其身份属性。因此，IdP 不愿意或无法释放 SP 所需的用户属性，以便为用户提供所需的细粒度授权。“IdP 属性释放不足被用户社区认为是当前 eduGAIN 领域的主要问题”[4]。这需要从其他属性权威机构（AAs）提取用户身份属性。为了解决这一“属性聚合”问题，许多人提出为每个用户分配一个持久的全局唯一标识符 [5, 6]。但这对用户的隐私有严重影响，因为它提供了一个可关联的句柄，可以用来随处跟踪用户。更糟糕的是，IdP 不为大多数 SP 提供服务，因为后者不属于 IdP 的联盟，因此被认为不可信。最后，IdP 是身份生态系统的中心，并根据需要向受信任的 SP 发布短期身份断言 [7] 或令牌 [8]。因此，他们知道用户何时访问哪些 SP，这侵犯了隐私并允许他们跟踪用户。
+    </p>
 
-      <p>
-Landau and More [9] document four economic tussles in current FIM
-systems and show why some have been more successful than others. In
-essence every participant: IdP, SP and user, has to gain from the FIM
-system otherwise it will fail to be widely adopted.
-      </p>
+    <p>
+      Landau 和 More [9] 记录了当前 FIM 系统中的四个经济争端，并说明了为什么某些系统比其他系统更成功。本质上，每个参与者：IdP、SP 和用户，都必须从 FIM 系统中获益，否则该系统将无法被广泛采用。
+    </p>
 
-      <p>
-By way of comparison, consider the use of plastic cards, passports,
-driving licenses and other such physical credentials in the world today.
-They are ubiquitous and massively successful. In this trust model, only
-the SP has to trust that the IdP is the authoritative source of the
-identity attribute(s) in the credential. Users are in control of their
-identity, and can show their credentials to any SPs they wish, without
-the permission of the IdP. Furthermore an IdP may not be aware that a SP
-has seen its credential and used it for authorisation. The user can
-combine or aggregate credentials as required by a SP. This model does
-not require the separation of IdPs and SPs, since they can be the same
-entity e.g. Tesco and its Clubcard. But if there is economic benefit
-then new SPs may dynamically join the system e.g. Esso petrol stations
-now accept Tesco Clubcards. Economic tussles are minimized.
-      </p>
+    <p>
+      通过比较，考虑当今世界中塑料卡、护照、驾驶执照和其他此类物理凭证的使用。它们无处不在并且非常成功。在这种信任模型中，只有 SP 需要信任 IdP 是凭证中身份属性的权威来源。用户可以控制其身份，并可以向任何他们希望的 SP 出示其凭证，而无需 IdP 的许可。此外，IdP 可能不知道 SP 已查看其凭证并将其用于授权。用户可以根据 SP 的要求组合或聚合凭证。此模型不需要 IdP 和 SP 的分离，因为它们可以是同一实体，例如 Tesco 和其 Clubcard。但如果有经济利益，则新的 SP 可能会动态加入系统，例如 Esso 加油站现在接受 Tesco Clubcard。经济争端被最小化。
+    </p>
 
-      <p>
-Verifiable Credentials are the electronic equivalent of today’s physical
-credentials but are more privacy preserving as they do not reveal the
-user’s name, unless consented to. VCs may contain as little as a single
-identity attribute, allowing the user to minimally disclose the
-attributes that he or she wishes.
-      </p>
-    </section>
+    <p>
+      可验证凭证是当今物理凭证的电子等价物，但更能保护隐私，因为它们不会在未经同意的情况下透露用户的姓名。可验证凭证可能仅包含单一的身份属性，允许用户最小化披露其希望共享的属性。
+    </p>
+  </section>
 
-    <section class="appendix">
-      <h1>References</h1>
-      <p>
-[4] EU AARC Project Deliverable DNA2.4 “Training Material Targeted at
-Identity Providers” 27 July 2016. Available from
-https://aarc-project.eu/wp-content/uploads/2016/07/AARC-DNA2.4.pdf
-      </p>
+  <section class="appendix">
+    <h1>参考文献</h1>
+    <p>
+      [4] EU AARC 项目交付成果 DNA2.4 “针对身份提供者的培训材料” 2016 年 7 月 27 日。可从
+      https://aarc-project.eu/wp-content/uploads/2016/07/AARC-DNA2.4.pdf 获取。
+    </p>
 
-      <p>
-[5] EC funded AARC project ‘Milestone MJRA1.4: First draft of the
-Blueprint Architecture for Authentication and Authorisation
-Infrastructures’ Google Docs. Available:
-https://docs.google.com/document/d/15-e0hpqWPZefbhcLJodzRMZNt8Qpe1gPpyNz2LX1Wvw/edit?usp=embed_facebook.
-      </p>
+    <p>
+      [5] 欧盟资助的 AARC 项目“里程碑 MJRA1.4：身份验证和授权基础设施蓝图架构的初稿” Google Docs。可从
+      https://docs.google.com/document/d/15-e0hpqWPZefbhcLJodzRMZNt8Qpe1gPpyNz2LX1Wvw/edit?usp=embed_facebook 获取。
+    </p>
 
-      <p>
-[6] Scott Cantor. “NativeSPAttributeResolver ” 7 Apr 2014. Available:
-https://wiki.shibboleth.net/confluence/
-display/SHIB2/NativeSPAttributeResolver.
-      </p>
+    <p>
+      [6] Scott Cantor. “NativeSPAttributeResolver” 2014 年 4 月 7 日。可从
+      https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPAttributeResolver 获取。
+    </p>
 
-      <p>
-[7] OASIS. “Assertions and Protocol for the OASIS Security Assertion
-Markup Language (SAML) V2.0”, OASIS Standard, 15 March 2005
-      </p>
+    <p>
+      [7] OASIS. “OASIS 安全断言标记语言（SAML）V2.0 的断言和协议”，OASIS 标准，2005 年 3 月 15 日。
+    </p>
 
-      <p>
-[8] N. Sakimura et al. “Final: OpenID Connect Core 1.0 incorporating
-errata set 1.” 8 Nov 2014. Available:
-http://openid.net/specs/openid-connect-core-1_0.html
-      </p>
+    <p>
+      [8] N. Sakimura 等人。“最终版：OpenID Connect Core 1.0 包含勘误集 1。” 2014 年 11 月 8 日。可从
+      http://openid.net/specs/openid-connect-core-1_0.html 获取。
+    </p>
 
-      <p>
-[9] S. Landau and T. Moore. "Economic Tussles in Federated Identity
-Management." 10th Workshop on the Economics of Information Security
-(WEIS’11). 2011. Available from http://weis2011.econinfosec.org/papers/
-Economic%20Tussles%20in%20Federated%20Identity%20Management.pdf
-      </p>
-
-    </section>
-
+    <p>
+      [9] S. Landau 和 T. Moore. “联合身份管理中的经济争端。” 第十届信息安全经济学研讨会（WEIS’11）。2011 年。可从
+      http://weis2011.econinfosec.org/papers/Economic%20Tussles%20in%20Federated%20Identity%20Management.pdf 获取。
+    </p>
+  </section>
   </body>
 </html>
 

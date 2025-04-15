@@ -100,193 +100,192 @@ pre .comment {
 </style>
   </head>
   <body>
-    <section id='abstract'>
+   <section id='abstract'>
       <p>
-This document is a privacy analysis of the Verifiable Credentials Data Model.
+        本文档是对可验证凭证数据模型的隐私分析。
       </p>
     </section>
 
     <section id='sotd'>
       <p>
-Comments regarding this document are welcome. Please file issues
-directly on <a href="https://github.com/w3c/vc-data-model/issues/">GitHub</a>,
-or send them to
-<a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
-(<a href="mailto:public-vc-comments-request@w3.org?subject=subscribe">subscribe</a>,
-<a href="https://lists.w3.org/Archives/Public/public-vc-comments/">archives</a>).
+        欢迎对本文档提出意见。请直接在
+        <a href="https://github.com/w3c/vc-data-model/issues/">GitHub</a>
+        上提交问题，或发送至
+        <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
+        (<a href="mailto:public-vc-comments-request@w3.org?subject=subscribe">订阅</a>，
+        <a href="https://lists.w3.org/Archives/Public/public-vc-comments/">存档</a>)。
       </p>
     </section>
 
     <section>
-      <h1>Privacy Analysis</h1>
+      <h1>隐私分析</h1>
 
       <section>
-        <h2>Does this specification deal with personally identifiable information?</h2>
+        <h2>本规范是否涉及个人可识别信息？</h2>
         <p>
-Yes. The properties inside Verifiable Credentials include Personally Identifiable Information (PII).
+          是的。可验证凭证中的属性包括个人可识别信息（PII）。
         </p>
         <p>
-Recommendation: None, as the specification makes this clear.
+          建议：无，因为规范已明确说明这一点。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification deal with high-value data?</h2>
+        <h2>本规范是否涉及高价值数据？</h2>
         <p>
-Potentially yes. The specification places no restrictions on what data can be placed in a Verifiable Credential, so it could include highly sensitive personal data.
+          可能是的。规范对可验证凭证中可以包含的数据没有限制，因此可能包括高度敏感的个人数据。
         </p>
         <p>
-Recommendation:  Protocols that carry Verifiable Credentials should always encrypt the Verifiable Credential payload. In addition, Verifiable Credentials that contain highly sensitive personal data should have that data encrypted inside the Verifiable Credential, so that any entity that captures the Verifiable Credential is not able to see the sensitive information.
-        </p>
-      </section>
-
-      <section>
-        <h2>Does this specification introduce new state for an origin that persists across browsing sessions</h2>
-        <p>
-Not in itself, no, as the specification only specifies a data structure. However, protocols that use this specification may introduce new state.
-        </p>
-        <p>
-Recommendation: None
+          建议：承载可验证凭证的协议应始终加密可验证凭证的有效负载。此外，包含高度敏感个人数据的可验证凭证应在凭证内部加密这些数据，以防止捕获凭证的任何实体查看敏感信息。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification expose a persistent, cross-origin state to the web?</h2>
+        <h2>本规范是否为来源引入了跨浏览会话持久的新状态？</h2>
         <p>
-Yes. Verifiable Credentials contain a random though potentially persistent identifier of the subject. This is passed between the issuer and the verifier. Consequently, collusion between them could identify the subject to the verifier, even though the Verifiable Credential itself does not. This is because in many cases the issuer will know the complete identity of the subject, even if the Verifiable Credential only contains a small proportion of it (such as age).
+          本身没有，因为规范仅定义了一个数据结构。然而，使用此规范的协议可能会引入新状态。
         </p>
         <p>
-Recommendation: The holder should limit the distribution of Verifiable Credentials containing the same PId to a minimal number of origins. The holder should obtain Verifiable Credentials with different PId to send to different origins wherever possible.
-        </p>
-      </section>
-
-      <section>
-        <h2>Does this specification expose any other data to an origin that it doesn’t currently have access to?</h2>
-        <p>
-Yes. It is the purpose of Verifiable Credentials to present identity attributes of the subject to the verifier. Note, however, that this is always with the full consent of the subject, except in cases where the holder is not the subject. In this latter case, the holder must be authorized to present this information to the verifier; otherwise, the verifier should reject it.
-        </p>
-        <p>
-Recommendation: Verifier should only accept Verifiable Credentials from subjects or holders who are authorized to present them to the verifier.
+          建议：无。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification enable new script execution/loading mechanisms?</h2>
+        <h2>本规范是否向 Web 暴露了持久的跨来源状态？</h2>
         <p>
-Not in itself, no, as the specification only specifies a data structure. However, protocols that use this specification may enable script loading.
+          是的。可验证凭证包含一个随机但可能持久的主体标识符。该标识符在颁发者和验证者之间传递。因此，即使可验证凭证本身没有，颁发者和验证者之间的串通也可能使验证者识别主体。这是因为在许多情况下，颁发者会知道主体的完整身份，即使可验证凭证仅包含其中的一小部分（例如年龄）。
         </p>
         <p>
-Recommendation: None
-        </p>
-      </section>
-
-      <section>
-        <h2>Does this specification allow an origin access to a user’s location?</h2>
-        <p>
-Yes. Verifiable Credentials may contain location information such as a subject’s home address, phone number, or current postal address.
-        </p>
-        <p>
-Recommendation: None.
+          建议：持有者应将包含相同 PId 的可验证凭证的分发限制到最少的来源数量。持有者应尽可能获取具有不同 PId 的可验证凭证以发送到不同的来源。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification allow an origin access to sensors on a user’s device?</h2>
+        <h2>本规范是否向来源暴露了其当前无法访问的其他数据？</h2>
         <p>
-Not in itself, no, as the specification only specifies a data structure. However, protocols that use this specification may enable access to sensors on a user’s device.
+          是的。可验证凭证的目的是向验证者展示主体的身份属性。然而，请注意，这始终是在主体完全同意的情况下，除非持有者不是主体。在后一种情况下，持有者必须被授权向验证者展示此信息；否则，验证者应拒绝它。
         </p>
         <p>
-Recommendation: None.
-        </p>
-      </section>
-
-      <section>
-        <h2>Does this specification allow an origin access to aspects of a user’s local computing environment?</h2>
-        <p>
-Not in itself, no, as the specification only specifies a data structure. However, protocols that use this specification may enable an origin to access aspects of a user’s local computing environment.
-        </p>
-        <p>
-Recommendation: None.
+          建议：验证者应仅接受来自被授权向其展示可验证凭证的主体或持有者的凭证。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification allow an origin access to other devices?</h2>
+        <h2>本规范是否启用了新的脚本执行/加载机制？</h2>
         <p>
-Not in itself, no, as the specification only specifies a data structure. However, protocols that use this specification may enable an origin to access other devices, e.g., to move a Verifiable Credential from one device to another.
+          本身没有，因为规范仅定义了一个数据结构。然而，使用此规范的协议可能会启用脚本加载。
         </p>
         <p>
-Recommendation: None.
-        </p>
-      </section>
-
-      <section>
-        <h2>Does this specification allow an origin some measure of control over a user agent’s native UI?</h2>
-        <p>
-Not in itself, no, as the specification only specifies a data structure. However, protocols that use this specification may enable an origin some measure of control over a user agent’s native UI.
-        </p>
-        <p>
-Recommendation: None.
+          建议：无。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification expose temporary identifiers to the web?</h2>
+        <h2>本规范是否允许来源访问用户的位置？</h2>
         <p>
-Potentially, yes. The subject’s ID in a Verifiable Credential could be a temporary identifier that is not stored permanently anywhere.
+          是的。可验证凭证可能包含位置信息，例如主体的家庭地址、电话号码或当前邮寄地址。
         </p>
         <p>
-Recommendation: Verifiable Credentials should be encrypted during transfer to avoid their contents being snooped.
-        </p>
-      </section>
-
-      <section>
-        <h2>Does this specification distinguish between behavior in first-party and third-party contexts?</h2>
-        <p>
-???
+          建议：无。
         </p>
       </section>
 
       <section>
-        <h2>How should this specification work in the context of a user agent’s "incognito" mode?</h2>
+        <h2>本规范是否允许来源访问用户设备上的传感器？</h2>
         <p>
-This specification only presents a data model. However protocols that use this specification should be able to work in incognito mode.
+          本身没有，因为规范仅定义了一个数据结构。然而，使用此规范的协议可能会启用对用户设备上传感器的访问。
         </p>
         <p>
-Recommendation: None.
-        </p>
-      </section>
-
-      <section>
-        <h2>Does this specification persist data to a user’s local device?</h2>
-        <p>
-The overall life cycle of Verifiable Credentials envisages that they may be stored persistently on the user’s local device or on a remote device under the user’s control. However, Verifiable Credentials on their own, if captured by a hostile entity, should not be of any value to it, except in so far as the Verifiable Credential may potentially reveal a small amount of Personally Identifiable Information (PII) about the subject.
-        </p>
-        <p>
-Recommendation: Verifiable Credentials should be encrypted during storage to prevent them being stolen by an attacker
+          建议：无。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification have a "Security Considerations" and "Privacy Considerations" section?</h2>
+        <h2>本规范是否允许来源访问用户本地计算环境的某些方面？</h2>
         <p>
-Yes.
+          本身没有，因为规范仅定义了一个数据结构。然而，使用此规范的协议可能会启用来源访问用户本地计算环境的某些方面。
         </p>
         <p>
-Recommendation: Ensure they are good enough.
+          建议：无。
         </p>
       </section>
 
       <section>
-        <h2>Does this specification allow downgrading default security characteristics?</h2>
+        <h2>本规范是否允许来源访问其他设备？</h2>
         <p>
-No. The specification simply defines a data structure and a signature field.
+          本身没有，因为规范仅定义了一个数据结构。然而，使用此规范的协议可能会启用来源访问其他设备，例如将可验证凭证从一个设备移动到另一个设备。
         </p>
         <p>
-Recommendation: None
+          建议：无。
         </p>
       </section>
 
+      <section>
+        <h2>本规范是否允许来源对用户代理的原生 UI 进行某种程度的控制？</h2>
+        <p>
+          本身没有，因为规范仅定义了一个数据结构。然而，使用此规范的协议可能会启用来源对用户代理的原生 UI 进行某种程度的控制。
+        </p>
+        <p>
+          建议：无。
+        </p>
+      </section>
+
+      <section>
+        <h2>本规范是否向 Web 暴露了临时标识符？</h2>
+        <p>
+          可能是的。可验证凭证中的主体 ID 可能是一个临时标识符，不会永久存储在任何地方。
+        </p>
+        <p>
+          建议：可验证凭证在传输过程中应加密，以避免其内容被窥探。
+        </p>
+      </section>
+
+      <section>
+        <h2>本规范是否区分第一方和第三方上下文中的行为？</h2>
+        <p>
+          ???
+        </p>
+      </section>
+
+      <section>
+        <h2>本规范在用户代理的“隐身”模式下应如何工作？</h2>
+        <p>
+          本规范仅提供了一个数据模型。然而，使用此规范的协议应能够在隐身模式下工作。
+        </p>
+        <p>
+          建议：无。
+        </p>
+      </section>
+
+      <section>
+        <h2>本规范是否将数据持久化到用户的本地设备？</h2>
+        <p>
+          可验证凭证的整体生命周期设想它们可能会持久存储在用户的本地设备或用户控制的远程设备上。然而，仅凭可验证凭证本身，如果被恶意实体捕获，除了可能揭示主体的一小部分个人可识别信息（PII）外，对其没有任何价值。
+        </p>
+        <p>
+          建议：可验证凭证在存储过程中应加密，以防止被攻击者窃取。
+        </p>
+      </section>
+
+      <section>
+        <h2>本规范是否有“安全注意事项”和“隐私注意事项”部分？</h2>
+        <p>
+          是的。
+        </p>
+        <p>
+          建议：确保它们足够完善。
+        </p>
+      </section>
+
+      <section>
+        <h2>本规范是否允许降低默认的安全特性？</h2>
+        <p>
+          否。该规范仅定义了一个数据结构和一个签名字段。
+        </p>
+        <p>
+          建议：无。
+        </p>
+      </section>
     </section>
 
   </body>
