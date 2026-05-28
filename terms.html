@@ -1,214 +1,170 @@
 <p>
-The following terms are used to describe concepts in this specification.
+以下术语用于描述本规范中的概念。
 </p>
 
 <dl class="termlist">
   <dt><dfn data-lt="claims">claim</dfn></dt>
   <dd>
-An assertion made about a <a>subject</a>.
+关于某个<a>subject</a>的断言。
   </dd>
   <dt><dfn data-lt="credential|credentials">credential</dfn></dt>
   <dd>
-A set of one or more <a>claims</a> made by an <a>issuer</a>.
-The <a>claims</a> in a credential can be about different <a>subjects</a>.
+由<a>issuer</a>做出的一组一个或多个<a>claims</a>。
+凭证中的<a>claims</a>可以关于不同的<a>subjects</a>。
 <p>
-  Our definition of credential differs from, 
-  <a href="https://csrc.nist.gov/glossary/term/credential">NIST's definitions of credential</a>.
+  我们对凭证的定义不同于
+  <a href="https://csrc.nist.gov/glossary/term/credential">NIST 对凭证的定义</a>。
 </p>
   </dd>
   <dt><dfn>data minimization</dfn></dt>
   <dd>
-The act of limiting the amount of shared data strictly to the minimum
-necessary to successfully accomplish a task or goal.
+将共享数据的数量严格限制在成功完成任务或目标所需的最低限度的行为。
   </dd>
   <dt><dfn data-lt="decentralized identifiers|DID|DIDs">decentralized identifier</dfn></dt>
   <dd>
-A portable URL-based identifier, also known as a <strong><em>DID</em></strong>,
-associated with an <a>entity</a>. These identifiers are most often used in a
-<a>verifiable credential</a> and are associated with <a>subjects</a> such that a
-<a>verifiable credential</a> itself can be easily ported from one
-<a>credential repository</a> to another without the need to reissue the <a>credential</a>.
-An example of a DID is `did:example:123456abcdef`.
+一种可移植的基于 URL 的标识符，也称为 <strong><em>DID</em></strong>，
+与某个<a>entity</a>相关联。这些标识符最常在<a>verifiable credential</a>中使用，
+并与<a>subjects</a>相关联，使得<a>verifiable credential</a>本身可以轻松地从一个
+<a>credential repository</a>移植到另一个，而无需重新颁发<a>credential</a>。
+DID 的一个示例是 `did:example:123456abcdef`。
   </dd>
   <dt><dfn class="lint-ignore" data-lt="decentralized identifier documents|DID document|DID documents">decentralized identifier document</dfn></dt>
   <dd>
-Also referred to as a <strong><em>DID document</em></strong>, this is a document
-that is accessible using a <a>verifiable data registry</a> and contains
-information related to a specific <a>decentralized identifier</a>, such as the
-associated <a>credential repository</a> and public key information.
+也称为 <strong><em>DID document</em></strong>，这是一种可以使用<a>verifiable data registry</a>访问的文档，
+包含与特定<a>decentralized identifier</a>相关的信息，例如相关的<a>credential repository</a>和公钥信息。
   </dd>
   <dt><dfn data-lt="default graph">default graph</dfn></dt>
   <dd>
-    The <a>graph</a> containing all <a>claims</a> that are not explicitly part of
-    a <a>named graph</a>.
+    包含所有未明确属于<a>named graph</a>的<a>claims</a>的<a>graph</a>。
   </dd>
   <dt><dfn data-lt="predicates|derived predicates">derived predicate</dfn></dt>
   <dd>
-A verifiable, boolean assertion about the value of another attribute in a
-<a>verifiable credential</a>. These are useful in zero-knowledge-proof-style
-<a>verifiable presentations</a> because they can limit information disclosure.
-For example, if a <a>verifiable credential</a> contains an attribute
-for expressing a specific height in centimeters, a derived predicate
-might reference the height attribute in the <a>verifiable credential</a>
-demonstrating that the <a>issuer</a> attests to a height value meeting the
-minimum height requirement, without actually disclosing the specific height
-value. For example, the <a>subject</a> is taller than 150 centimeters.
+关于<a>verifiable credential</a>中另一个属性值的可验证布尔断言。这些在零知识证明风格的<a>verifiable presentations</a>中很有用，因为它们可以限制信息披露。
+例如，如果<a>verifiable credential</a>包含一个以厘米表示特定身高的属性，
+派生谓词可能引用<a>verifiable credential</a>中的身高属性，
+证明<a>issuer</a>证实身高值满足最低身高要求，而不实际披露具体的身高值。
+例如，<a>subject</a>身高超过 150 厘米。
   </dd>
   <dt><dfn class="lint-ignore">digital signature</dfn></dt>
   <dd>
-A mathematical scheme for demonstrating the authenticity of a digital message.
+一种用于证明数字消息真实性的数学方案。
   </dd>
   <dt><dfn data-lt="entities|entity's">entity</dfn></dt>
   <dd>
-Anything that can be referenced in statements as an abstract or concrete noun.
-Entities include but are not limited to people, organizations, physical things,
-documents, abstract concepts, fictional characters, and arbitrary text. Any
-entity might perform roles in the ecosystem, if it is capable of doing so. Note
-that some entities fundamentally cannot take actions, e.g., the string "abc"
-cannot issue credentials.
+任何可以在陈述中作为抽象或具体名词被引用的事物。
+实体包括但不限于人、组织、实物、文档、抽象概念、虚构角色和任意文本。
+任何实体都可以在生态系统中执行角色，只要它有能力这样做。
+请注意，某些实体从根本上无法采取行动，例如字符串 "abc" 无法颁发凭证。
   </dd>
   <dt><dfn data-lt="graphs">graph</dfn></dt>
   <dd>
-A set of claims, forming a network of information composed of <a>subjects</a>
-and their relationship to other <a>subjects</a> or data. Each <a>claim</a> is
-part of a graph; this is either explicit in the case of <a>named graphs</a>, or
-implicit for the <a>default graph</a>.
+一组声明，形成由<a>subjects</a>及其与其他<a>subjects</a>或数据之间关系组成的信息网络。
+每个<a>claim</a>都是图的一部分；在<a>named graphs</a>的情况下这是显式的，
+对于<a>default graph</a>则是隐式的。
   </dd>
   <dt><dfn data-lt="holders|holder's|holders'">holder</dfn></dt>
   <dd>
-A role an <a>entity</a> might perform by possessing one or more
-<a>verifiable credentials</a> and generating <a>verifiable presentations</a>
-from them. A holder is often, but not always, a <a>subject</a> of the
-<a>verifiable credentials</a> they are holding. Holders store their
-<a>credentials</a> in <a>credential repositories</a>.
+<a>entity</a>可以通过拥有一个或多个<a>verifiable credentials</a>并从中生成<a>verifiable presentations</a>来执行的角色。
+持有者通常（但不总是）是其所持有的<a>verifiable credentials</a>的<a>subject</a>。
+持有者将其<a>credentials</a>存储在<a>credential repositories</a>中。
   </dd>
   <dt><dfn class="lint-ignore"
            data-lt="identities|identity's">identity</dfn></dt>
   <dd>
-The means for keeping track of <a>entities</a> across contexts. Digital
-identities enable tracking and customization of <a>entity</a> interactions
-across digital contexts, typically using identifiers and attributes. Unintended
-distribution or use of identity information can compromise privacy. Collection
-and use of such information should follow the principle of
-<a>data minimization</a>.
+在不同上下文中跟踪<a>entities</a>的手段。数字身份使得能够跨数字上下文跟踪和定制<a>entity</a>交互，
+通常使用标识符和属性。身份信息的意外分发或使用可能会损害隐私。
+此类信息的收集和使用应遵循<a>data minimization</a>原则。
   </dd>
   <dt><dfn data-lt="identity providers|idp">identity provider</dfn></dt>
   <dd>
-An identity provider, sometimes abbreviated as <em>IdP</em>, is a system
-for creating, maintaining, and managing identity information for
-<a>holders</a>, while providing authentication services to
-<a>relying party</a> applications within a federation or distributed network.
-In this case the <a>holder</a> is always the <a>subject</a>. Even if the
-<a>verifiable credentials</a> are bearer <a>credentials</a>, it is assumed the
-<a>verifiable credentials</a> remain with the <a>subject</a>, and if they are
-not, they were stolen by an attacker. This specification does not use this term
-unless comparing or mapping the concepts in this document to other
-specifications. This specification decouples the <a>identity provider</a>
-concept into two distinct concepts: the <a>issuer</a> and the <a>holder</a>.
+身份提供者，有时缩写为 <em>IdP</em>，是一种用于创建、维护和管理<a>holders</a>身份信息的系统，
+同时在联盟或分布式网络中向<a>relying party</a>应用程序提供认证服务。
+在这种情况下，<a>holder</a>始终是<a>subject</a>。即使<a>verifiable credentials</a>是不记名<a>credentials</a>，
+也假定<a>verifiable credentials</a>保留在<a>subject</a>手中，
+如果不是这样，则它们被攻击者窃取了。除非将本文档中的概念与其他规范进行比较或映射，
+否则本规范不使用此术语。本规范将<a>identity provider</a>概念解耦为两个不同的概念：
+<a>issuer</a>和<a>holder</a>。
   </dd>
   <dt><dfn data-lt="issuers|issuer's">issuer</dfn></dt>
   <dd>
-A role an <a>entity</a> can perform by asserting <a>claims</a> about one or
-more <a>subjects</a>, creating a <a>verifiable credential</a> from these
-<a>claims</a>, and transmitting the <a>verifiable credential</a> to a
-<a>holder</a>.
+<a>entity</a>可以通过对一个或多个<a>subjects</a>断言<a>claims</a>、
+从这些<a>claims</a>创建<a>verifiable credential</a>并将<a>verifiable credential</a>传输给<a>holder</a>来执行的角色。
   </dd>
   <dt><dfn data-lt="named graphs">named graph</dfn></dt>
   <dd>
-A <a>graph</a> associated with specific properties, such as
-`verifiableCredential`. These properties
-result in separate <a>graphs</a> that contain all <a>claims</a> defined in the
-corresponding JSON objects.
+与特定属性相关联的<a>graph</a>，例如
+`verifiableCredential`。这些属性产生单独的<a>graphs</a>，
+包含在相应 JSON 对象中定义的所有<a>claims</a>。
   </dd>
   <dt><dfn data-lt="presentations|presentation">presentation</dfn></dt>
   <dd>
-Data derived from one or more <a>verifiable credentials</a>, issued by one or
-more <a>issuers</a>, that is shared with a specific <a>verifier</a>.
+从一个或多个<a>verifiable credentials</a>派生的数据，由一个或多个<a>issuers</a>颁发，
+与特定<a>verifier</a>共享。
   </dd>
   <dt><dfn data-lt="credential repositories">credential repository</dfn></dt>
   <dd>
-A program, such as a storage vault or personal <a>verifiable credential</a>
-wallet, that stores and protects access to <a>holders'</a>
-<a>verifiable credentials</a>.
+一种程序，例如存储保管库或个人<a>verifiable credential</a>钱包，
+用于存储和保护对<a>holders'</a> <a>verifiable credentials</a>的访问。
   </dd>
   <dt><dfn>selective disclosure</dfn></dt>
   <dd>
-The ability of a <a>holder</a> to make fine-grained decisions about what
-information to share.
+<a>holder</a>对共享哪些信息做出细粒度决策的能力。
   </dd>
   <dt><dfn data-lt="subjects|subject's">subject</dfn></dt>
   <dd>
-A thing about which <a>claims</a> are made.
+被做出<a>claims</a>的事物。
   </dd>
   <dt><dfn class="lint-ignore">user agent</dfn></dt>
   <dd>
-A program, such as a browser or other Web client, that mediates the
-communication between <a>holders</a>, <a>issuers</a>, and <a>verifiers</a>.
+一种程序，例如浏览器或其他 Web 客户端，用于调解<a>holders</a>、<a>issuers</a>和<a>verifiers</a>之间的通信。
   </dd>
   <dt><dfn data-lt="claim validation">validation</dfn></dt>
   <dd>
-The assurance that a <a>claim</a> from a specific <a>issuer</a> satisfies the
-business requirements of a <a>verifier</a> for a particular use. This
-specification defines how verifiers verify <a>verifiable credentials</a> and
-<a>verifiable presentations</a>.<br/>
-It also specifies that <a>verifiers</a> validate claims in <a>verifiable
-credentials</a> before relying on them. However, the means for such validation
-vary widely and are outside the scope of this specification. It is expected
-that <a>verifiers</a> will trust certain <a>issuers</a> for certain claims and
-apply their own rules to determine which claims in which <a>credentials</a>
-are suitable for use by their systems.
+确保来自特定<a>issuer</a>的<a>claim</a>满足<a>verifier</a>对特定用途的业务需求。
+本规范定义了验证者如何验证<a>verifiable credentials</a>和<a>verifiable presentations</a>。<br/>
+本规范还规定<a>verifiers</a>在依赖<a>verifiable credentials</a>中的声明之前对其进行验证（确认有效性）。
+然而，这种验证（确认有效性）的方式差异很大，超出了本规范的范围。
+预期<a>verifiers</a>将信任特定<a>issuers</a>对特定声明的断言，
+并应用自己的规则来确定哪些<a>credentials</a>中的哪些声明适合其系统使用。
   </dd>
   <dt><dfn data-lt="verifiable credential|verifiable credentials|vc|vcs">verifiable credential</dfn></dt>
   <dd>
-A verifiable credential is a tamper-evident credential that has authorship that
-can be cryptographically verified. Verifiable credentials can be used to build
-<a>verifiable presentations</a>, which can also be cryptographically verified.
+可验证凭证是一种具有防篡改特性的凭证，其作者身份可以通过密码学方式验证。
+可验证凭证可用于构建<a>verifiable presentations</a>，后者也可以通过密码学方式验证。
   </dd>
   <dt><dfn data-lt="verifiable data registries">verifiable data registry</dfn></dt>
   <dd>
-A role a system might perform by mediating the creation and <a>verification</a>
-of identifiers, keys, and other relevant data, such as
-<a>verifiable credential</a> schemas, revocation registries, issuer public keys,
-and so on, which might be required to use <a>verifiable credentials</a>. Some
-configurations might require correlatable identifiers for <a>subjects</a>. Some
-registries, such as ones for UUIDs and public keys, might just act as namespaces
-for identifiers.
+系统可能执行的一种角色，通过调解标识符、密钥和其他相关数据的创建和<a>verification</a>，
+例如<a>verifiable credential</a>模式、撤销注册表、颁发者公钥等，
+这些可能是使用<a>verifiable credentials</a>所必需的。
+某些配置可能需要<a>subjects</a>的可关联标识符。
+某些注册表（例如用于 UUID 和公钥的注册表）可能仅作为标识符的命名空间。
   </dd>
   <dt><dfn data-lt="verifiable presentation|verifiable presentations|vp|vps">verifiable presentation</dfn></dt>
   <dd>
-A verifiable presentation is a tamper-evident presentation encoded in such a way
-that authorship of the data can be trusted after a process of cryptographic
-verification. Certain types of verifiable presentations might contain data that
-is synthesized from, but do not contain, the original <a>verifiable credentials</a>
-(for example, zero-knowledge proofs).
+可验证展示是一种具有防篡改特性的展示，其编码方式使得数据的作者身份在经过密码学验证过程后可以被信任。
+某些类型的可验证展示可能包含从原始<a>verifiable credentials</a>合成的数据，
+但不包含原始<a>verifiable credentials</a>本身（例如零知识证明）。
   </dd>
   <dt><dfn data-lt="verify|verified|verifying|verifiable|verifiability">verification</dfn></dt>
   <dd>
-The evaluation of whether a <a>verifiable credential</a> or <a>verifiable
-presentation</a> is an authentic and current statement of the issuer or
-presenter, respectively. This includes checking that: the credential (or
-presentation) conforms to the specification; the proof method is satisfied; and,
-if present, the status check succeeds. Verification of a credential does not
-imply evaluation of the truth of <a>claims</a> encoded in the credential.
+评估<a>verifiable credential</a>或<a>verifiable presentation</a>是否分别是颁发者或展示者的真实且当前的陈述。
+这包括检查：凭证（或展示）符合规范；证明方法被满足；
+以及（如果存在）状态检查成功。验证凭证并不意味着评估凭证中编码的<a>claims</a>的真实性。
   </dd>
   <dt><dfn data-lt="verifier|verifiers|verifier's|credential verifiers|credential verifier's">verifier</dfn></dt>
   <dd>
-A role an <a>entity</a> performs by receiving one or more
-<a>verifiable credentials</a>, optionally inside a
-<a>verifiable presentation</a> for processing. Other specifications might refer
-to this concept as a <dfn data-lt="relying parties">relying party</dfn>.
+<a>entity</a>通过接收一个或多个<a>verifiable credentials</a>（可选地包含在<a>verifiable presentation</a>中）进行处理而执行的角色。
+其他规范可能将此概念称为<dfn data-lt="relying parties">relying party</dfn>。
   </dd>
   <dt><dfn data-lt="verification material">verification material</dfn></dt>
   <dd>
-    Information that could be a cryptographic public key or any other data 
-    used to verify a proof.
+    可以是密码学公钥或用于验证证明的任何其他数据的信息。
   </dd>
   <dt><dfn data-lt="URL|URLs">URL</dfn></dt>
   <dd>
-A Uniform Resource Locator, as defined by [[URL]]. URLs can be dereferenced such
-that they result in a resource, such as a document. The rules for dereferencing,
-or fetching, a URL are defined by the URL [=url/scheme=]. This specification
-does not use the term URI or IRI because those terms have been deemed to be
-confusing to Web developers.
+统一资源定位符，如 [[URL]] 所定义。URL 可以被解引用，从而产生资源，例如文档。
+解引用或获取 URL 的规则由 URL [=url/scheme=] 定义。
+本规范不使用 URI 或 IRI 术语，因为这些术语被认为对 Web 开发者来说容易造成混淆。
   </dd>
 </dl>

@@ -1,148 +1,98 @@
-# Verifiable Credentials Data-Model Explainer
+> 中文翻译：曾毅 (https://github.com/studyzy/)
 
-***by Tzviya Siegman, Wiley; Manu Sporny, Digital Bazaar; Ken Ebert, Sovrin;
+# 可验证凭证（Verifiable Credentials）数据模型说明
+
+***作者：Tzviya Siegman, Wiley; Manu Sporny, Digital Bazaar; Ken Ebert, Sovrin;
 Brent Zundel, Evernym***
 
-***NOTE***: "Verifiable claims" are now known as "verifiable credentials".
-The W3C Verifiable Claims Working Group's experience with using the term
-"verifiable claims" demonstrated that it led to confusion.
-The group has since found consensus in shifting to use the term
-"verifiable credentials", which contain "claims".
+***注意***："可验证声明（Verifiable Claims）"现在被称为"可验证凭证（Verifiable Credentials）"。
+W3C Verifiable Claims Working Group 在使用"可验证声明"一词时发现该术语容易导致混淆。
+该工作组此后已达成共识，转而使用"可验证凭证"一词，其中包含"声明（claims）"。
 
-## Introduction
+## 介绍
 
-It is currently difficult to transmit credentials such as driver's licenses,
-proofs of age, education qualifications, and healthcare data, on the
-Internet in a way that is verifiable yet protects individual privacy.
+目前，在互联网上传输驾驶执照、年龄证明、教育资质和医疗数据等凭证，
+并以可验证且保护个人隐私的方式进行，仍然十分困难。
 
-Starting in 2013, the
-[W3C Credentials Community Group](https://w3c-ccg.github.io/) started work in
-earnest on solutions in this space followed shortly thereafter by the
-[Rebooting Web of Trust Community](http://www.weboftrust.info/) and the
-[Verifiable Claims Working Group](https://www.w3.org/2017/vc/). These groups,
-composed of 150+ individuals and organizations, are currently focused on the
-creation, storage, transmission, and verification of digital credentials.
+从 2013 年开始，
+[W3C Credentials Community Group](https://w3c-ccg.github.io/) 开始认真着手该领域的解决方案，随后
+[Rebooting Web of Trust Community](http://www.weboftrust.info/) 和
+[Verifiable Claims Working Group](https://www.w3.org/2017/vc/) 也相继加入。这些由 150 多位个人和组织组成的工作组，目前专注于数字凭证的创建、存储、传输和验证。
 
-## Goals
+## 目标
 
-The mission of the Verifiable Claims Working Group (VCWG) is to make 
-expressing, exchanging, and verifying claims easier and more secure. The
-data model outlines core concepts, such as claims, credentials, and
-presentations, that form the foundation of the Specification.
+Verifiable Claims Working Group (VCWG) 的使命是使声明的表达、交换和验证更加简单和安全。该数据模型概述了核心概念，如声明、凭证和展示，这些构成了规范的基础。
 
-## Non-goals
+## 非目标
 
-The VCWG is not defining protocols or APIs. The model is identifier agnostic.
+VCWG 不定义协议或 API。该模型与标识符无关。
 
-## Getting Started
+## 入门
 
-The verifiable credentials ecosystem is composed of five primary roles:
+可验证凭证生态系统由五个主要角色组成：
 
-* ***issuer*** - A role an entity might perform by creating a verifiable
-  credential, associating it with a specific ***subject***, and transmitting
-  it to a ***holder***. Example ***issuers*** include corporations, non-profit
-  organizations, trade associations, governments, and individuals.
+* ***颁发者（issuer）*** - 实体可能执行的一种角色，通过创建可验证凭证，将其与特定***主体（subject）***关联，并将其传输给***持有者（holder）***。颁发者的示例包括公司、非营利组织、行业协会、政府和个人。
 
-* ***subject*** - A role an entity might perform by having one or more
-  verifiable credentials asserted about it. Example ***subjects*** include 
-  human beings, animals, and things.
+* ***主体*** - 实体可能执行的一种角色，拥有一个或多个关于它的可验证凭证声明。主体的示例包括人类、动物和物品。
   
-* ***holder*** - A role an entity might perform by possessing one or more
-  verifiable credentials about a ***subject*** and generating presentations
-  from them. Example ***holders*** include students, employees, and customers.
+* ***持有者*** - 实体可能执行的一种角色，拥有关于某个主体的一个或多个可验证凭证，并从中生成展示。持有者的示例包括学生、员工和客户。
   
-* ***verifier*** - A role an entity might perform by requesting and receiving a
-  verifiable presentation that proves the ***holder*** possesses the required
-  verifiable credentials. Example ***verifiers*** include employers, security
-  personnel, and websites.
+* ***验证者（verifier）*** - 实体可能执行的一种角色，通过请求和接收可验证展示（verifiable presentation）来证明持有者拥有所需的可验证凭证。验证者的示例包括雇主、安全人员和网站。
 
-* ***verifiable data registry*** - A role a system might perform by mediating
-  the creation and verification of identifiers, keys, and other
-  relevant data, such as verifiable credential schemas and revocation
-  registries, which might be required to use verifiable credentials. Some
-  configurations might require correlatable identifiers for ***subjects***.
-  Example verifiable data registries include trusted databases, decentralized
-  databases, government ID databases, and distributed ledgers.
+* ***可验证数据注册表（verifiable data registry）*** - 系统可能执行的一种角色，通过协调标识符、密钥和其他相关数据（如可验证凭证模式和撤销注册表）的创建和验证，这些可能是使用可验证凭证所必需的。某些配置可能需要主体的可关联标识符。可验证数据注册表的示例包括受信任的数据库、去中心化数据库、政府身份证数据库和分布式账本。
 
-**Note:** In many cases the ***holder*** and ***subject*** of a verifiable
-credential will be the same, but this is not always the case. For example,
-a parent (the ***holder***) may hold a verifiable credential for a child
-(the ***subject***), or a pet lover (the ***holder***) may hold a verifiable
-credential for their pet (the ***subject***).
+**注意：** 在许多情况下，可验证凭证的持有者和主体是同一个人，但并非总是如此。例如，父母（持有者）可能持有孩子（主体）的可验证凭证，或者宠物爱好者（持有者）可能持有其宠物（主体）的可验证凭证。
 
-A visual depiction of the verifiable credentials ecosystem is shown below.
+可验证凭证生态系统的可视化描述如下所示。
 
 <a href="https://w3c.github.io/vc-data-model/">
   <img src="diagrams/ecosystem.svg" width="100%" height="400">
 </a>
 
-### Claims, Credentials, and Presentations
+### 声明、凭证和展示
 
-The ecosystem roles exchange data enabling the realization of the use
-cases outlined below. The data exchanged differs depending on the roles
-participating, but is fundamentally composed of claims, credentials, and
-presentations.
+生态系统角色交换数据以实现下面概述的用例。交换的数据因参与的角色不同而异，但基本上由声明、凭证和展示组成。
 
-A *claim* is a statement about a subject, expressed as a subject-property-value
-relationship.
+*声明*是关于主体的陈述，表达为主体-属性-值的关系。
 
 <a href="https://w3c.github.io/vc-data-model/">
   <img src="diagrams/claim.svg" width="50%">
 </a>
 
-### Proofs
+### 证明（Proofs）
 
-The cryptographic mechanism used to prove that the information in a verifiable
-credential or a verifiable presentation was not tampered with is called a
-*proof*. There are many types of cryptographic proofs including, but not
-limited to, digital signatures, zero-knowledge proofs, proofs of work, and
-proofs of stake.
+用于证明可验证凭证或可验证展示中的信息未被篡改的加密机制被称为*证明（proof）*。有许多类型的加密证明，包括但不限于数字签名、零知识证明（zero-knowledge proof）、工作量证明和权益证明。
 
-The data model does not detail proof mechanisms.
+数据模型不详细说明证明机制。
 
-#### Zero-Knowledge Proofs
+#### 零知识证明
 
-The verifiable credentials data model supports the use of zero-knowledge proof
-(ZKP) technology. This allows credentials with ZKP-compatible elements to
-support presentations that enable:
+可验证凭证数据模型支持使用零知识证明 (ZKP) 技术。这允许具有 ZKP 兼容元素的凭证支持以下展示功能：
 
-* Selective disclosure of each credential attribute.
-* Predicate proofs of numeric values (for example, integers, dates, and
-  enumerations) that are:
-  * Greater-than
-  * Less-than
-  * In a range (for example, 5 < x < 100).
-* Set-membership proofs.
+* 每个凭证属性的选择性披露（selective disclosure）。
+* 数值（例如整数、日期和枚举）的谓词证明：
+  * 大于
+  * 小于
+  * 在某个范围内（例如，5 < x < 100）。
+* 集合成员资格证明。
 
-## Use Cases
+## 用例
 
-The VCWG has created a [Use Case](https://w3c.github.io/vc-use-cases/)
-document, demonstrating complicated scenarios and full encoding.
+VCWG 已创建了一份[用例](https://w3c.github.io/vc-use-cases/)文档，展示了复杂场景和完整编码。
 
-Some simple use cases include:
-* A student presents a government-issued identity to verify who she is when
-  presenting herself for a standardized test.
-* An airline offers loyal customers upgrades to first-class using digital
-  coupons. The coupons are issued as verifiable credentials.
-* A Board of Physicians maintains its list of board-certified physicians in
-  a credentials repository, enabling the board to assert that a physician is
-  certified, or to revoke certification as needed. The information in the 
-  repository can be verified as physicians apply for positions, or by patients
-  as they seek information about the doctors they are considering. This can be
-  done as a zero-knowledge proof of set membership.
-* A loan applicant presents proof of sufficient income, derived from a
-  credential issued by her employer. This can be done without revealing her
-  exact income by using a zero-knowledge predicate proof.
+一些简单的用例包括：
+* 一名学生出示政府颁发的身份证明，以在参加标准化考试时验证其身份。
+* 一家航空公司使用数字优惠券为忠实客户提供头等舱升级。这些优惠券以可验证凭证的形式颁发。
+* 一个医师委员会在凭证存储库（credential repository）中维护其经过认证的医师名单，使委员会能够断言医师已获得认证，或根据需要撤销认证。当医师申请职位时，或患者寻找其正在考虑的医生的信息时，可以验证存储库中的信息。这可以通过集合成员资格的零知识证明来完成。
+* 一位贷款申请者提供足够收入的证明，该证明来源于其雇主颁发的凭证。这可以通过零知识谓词证明来完成，而无需透露其确切收入。
 
-## Code Samples
+## 代码示例
 
-What does a Verifiable Credential look like?
+可验证凭证是什么样的？
 
-There are many pieces of information that MAY be included in a verifiable
-credential, of which there are numerous examples in the Specification.
+可验证凭证中 MAY 包含许多信息，规范中有大量示例。
 
-The following is an example of the ID property in a credential, using the
-Decentralized Identifier (DID) scheme.
+以下是凭证中 ID 属性的示例，使用了去中心化标识符 (DID) 方案。
 
 ```
 {
@@ -170,7 +120,7 @@ Decentralized Identifier (DID) scheme.
 }
 ```
 
-The following is an example verifiable credential that supports ZKPs.
+以下是支持 ZKP 的可验证凭证示例。
 ```
 {
   "@context": [
@@ -211,8 +161,7 @@ The following is an example verifiable credential that supports ZKPs.
 }
 ```
 
-Here is an example of a verifiable credential encoded as a JWT that supports JWS proofs. The example shows the header
-and the payload as well as the final JWS compact serialization (base64 encoded).
+以下是编码为 JWT 并支持 JWS 证明的可验证凭证示例。该示例展示了头部和有效载荷，以及最终的 JWS 紧凑序列化（base64 编码）。
 ```
 {
     "alg": "RS256",
@@ -262,105 +211,52 @@ AlQuattLRolXx3EtPysrZe-wU7yrEtNPvpGs-OyJAczfJPzza9lGTbx6IWS-0pTmNq6hwNd0ODMiB3uL
 3TeBN1xLoue9Hdc3toUvmdyXecSvltPcaiRoN-uQo8RRAvfK7GALAzaHw
 ```
 
-## Important Design Choices
+## 重要的设计选择
 
-This section summarizes a number of design choices that the VCWG spent a
-considerable amount of time debating.
+本节总结了 VCWG 花费大量时间讨论的若干设计选择。
 
-### Privacy-Enhancing Architecture Agility
+### 隐私增强架构的灵活性
 
-The VCWG spent a considerable amount of time exploring various privacy concerns
-including, but not limited to, multiple ZKP systems, selective disclosure
-schemes, avoiding cryptographic fingerprinting, and the intersection of tracking
-technologies and verifiable credentials. The outcome is a specification that
-attempts to strike the right balance between what is currently achievable while
-ensuring that future privacy-enhancing systems are able to use the same
-architecture to protect individual and organizational privacy.
+VCWG 花费了大量时间探索各种隐私问题，包括但不限于多种 ZKP 系统、选择性披露方案、避免加密指纹识别，以及跟踪技术与可验证凭证的交叉问题。其结果是一个试图在当前可实现的目标与确保未来隐私增强系统能够使用相同架构来保护个人和组织隐私之间取得适当平衡的规范。
 
-### Syntax Agility
+### 语法灵活性
 
-While the document outlines a data model that is expressible in a number of
-different syntaxes, there was considerable thought put into the question of
-which representation syntaxes the specification would highlight. JSON-LD, which
-is a fully compatible subset of JSON, was suggested as the primary format. There
-were concerns that a JSON-LD processor would be required to process verifiable
-credentials. After more than a year of technical work and collaboration with
-the JSON-LD 1.1 Working Group, the VCWG has demonstrated that a JSON-LD
-processor is not necessary to conform to the Specification. The vast majority
-of developers will be able to work with a verifiable credential as if it is
-just another JSON object.
+虽然该文档概述了一个可以用多种不同语法表达的数据模型，但在规范应突出哪些表示语法的问题上经过了深思熟虑。JSON-LD 作为 JSON 的完全兼容子集，被建议作为主要格式。曾有人担心处理可验证凭证需要 JSON-LD 处理器。经过一年多的技术工作以及与 JSON-LD 1.1 Working Group 的合作，VCWG 已经证明符合规范并不需要 JSON-LD 处理器。绝大多数开发者将能够像处理普通 JSON 对象一样处理可验证凭证。
 
-### Authorization
+### 授权
 
-The VCWG debated the use of verifiable credentials as an authorization
-mechanism. The result of this debate was the notion that verifiable credentials
-could be used in authorization systems, but did not constitute an authorization
-system by themselves, and that great consideration should be put into any
-system that uses verifiable credentials in an authorization
-framework.
+VCWG 讨论了将可验证凭证用作授权机制的问题。讨论的结果是：可验证凭证可以在授权系统中使用，但其本身并不构成授权系统，并且任何在授权框架中使用可验证凭证的系统都应该进行充分考虑。
 
-### Terms of Use
+### 使用条款
 
-There were multiple discussions related to how a verifiable credential
-should be used. For example, issuers might want to place restrictions on
-how a verifiable credential should be used. Holders might want to also place
-restrictions on how a verifier can use their information. While there was
-consensus that these restrictions should be able to be expressed in the
-data model, there was no consensus on what sorts of restrictions should be
-suggested by the Specification. The result is an open mechanism for expressing
-the terms of use for verifiable credentials and verifiable presentations.
+关于可验证凭证应如何使用，进行了多次讨论。例如，颁发者可能希望对可验证凭证的使用方式施加限制。持有者可能也希望对验证者如何使用其信息施加限制。虽然对于这些限制应该能够在数据模型中表达已达成共识，但对于规范应建议哪些类型的限制则没有达成共识。结果是一个用于表达可验证凭证和可验证展示使用条款的开放机制。
 
-### Proof Format Agility
+### 证明格式灵活性
 
-Currently there are at least four different proof formats in active 
-use by participants in the VCWG, including JSON Web Signatures,
-Zero-Knowledge Proofs using CL signatures, Common Binary Object Representation Object Signing and
-Encryption, and Linked Data Proofs. It was challenging for the VCWG to select
-one format because there are a number of benefits and drawbacks provided by
-each approach. In addressing this challenge, the VCWG has ensured that the Verifiable
-Credentials Data Model is flexible enough to be compatible with each signature
-format with no changes needed to the core data model.
+目前，VCWG 参与者至少有四种不同的证明格式在积极使用中，包括 JSON Web Signatures、使用 CL 签名的零知识证明、Common Binary Object Representation Object Signing and Encryption，以及 Linked Data Proofs。VCWG 很难选择一种格式，因为每种方法都有各自的优缺点。为了应对这一挑战，VCWG 确保了可验证凭证数据模型足够灵活，能够与每种签名格式兼容，而无需对核心数据模型进行任何更改。
 
-### Support for JWT
+### 对 JWT 的支持
 
-JSON Web Token (JWT) is a widely used means of expressing claims between two parties.
-Providing a representation of the Verifiable Credentials Data Model for JWT allows
-existing systems and libraries to participate in the ecosystem.
+JSON Web Token (JWT) 是一种广泛使用的在两方之间表达声明的方式。为 JWT 提供可验证凭证数据模型的表示，使现有系统和库能够参与该生态系统。
 
-The Specification defines the encoding rules of the Verifiable Credential Data
-Model onto JWT and JWS. It further defines processing rules on how and when to
-make use of specific JWT-registered claim names and specific JWS-registered
-header parameter names, allowing systems based on JWT to comply with the
-specification while avoiding duplicate representation of specific information
-contained in the enclosed JSON or JSON-LD object.
+规范定义了可验证凭证数据模型到 JWT 和 JWS 的编码规则。它还定义了关于何时以及如何使用特定 JWT 注册声明名称和特定 JWS 注册头部参数名称的处理规则，使基于 JWT 的系统能够符合规范，同时避免在封闭的 JSON 或 JSON-LD 对象中重复表示特定信息。
 
-### Selective disclosure
-The ability of a holder to selectively disclose the attributes in a credential
-is recognized as a valuable property, in harmony with the principles of data
-minimization and self-sovereign identity.
+### 选择性披露
+持有者选择性披露凭证中属性的能力被认为是一个有价值的特性，与数据最小化和自主身份的原则相一致。
 
-It was debated whether this property should be required of all verifiable credential
-implementors, but it was determined that requiring such capability might be too onerous.
-The data model in its current form supports selective disclosure as a best practice,
-but does not require it.
+曾讨论过是否应该要求所有可验证凭证实现者都具备此特性，但最终确定要求此类能力可能过于繁重。当前形式的数据模型支持选择性披露作为最佳实践，但不要求必须实现。
 
-## Features at Risk
+## 有风险的功能
 
-We have asked for [preliminary commitments from potential implementers](https://docs.google.com/spreadsheets/d/1SzfAUA0J72-1BORHJEmY4cdZrQ6vmKy4oq_24r_NwB4/edit?usp=sharing). We expect all features to have at
-least two implementations. With current commitments, some features have exactly two.  
-Of course we will continue to recruit for additional implementations.
+我们已向[潜在实现者征求了初步承诺](https://docs.google.com/spreadsheets/d/1SzfAUA0J72-1BORHJEmY4cdZrQ6vmKy4oq_24r_NwB4/edit?usp=sharing)。我们期望所有功能至少有两个实现。根据目前的承诺，某些功能恰好只有两个实现。当然，我们将继续招募更多的实现。
 
-## Implementations and Reviews
+## 实现和审查
 
-The VCWG has begun the process of horizontal review. Feedback from APA and
-PING has been, or is in the process of being, incorporated.
+VCWG 已开始横向审查流程。来自 APA 和 PING 的反馈已经被纳入或正在纳入过程中。
 
-This data model has numerous successful implementations, including governments,
-universities, major technology organizations, and not-for-profit organizations.
+该数据模型已有众多成功的实现，包括政府、大学、主要技术组织和非营利组织。
 
-## References and Acknowledgements
+## 参考资料和致谢
 
-Most of the text came from [the data model](https://w3c.github.io/vc-data-model/).
-Thanks to Manu Sporny for writing much of the source material, Tzviya Siegman
-for beginning this document, and Oliver Terbu and Ken Ebert for adding examples of
-verifiable credentials.
+大部分文本来自[数据模型](https://w3c.github.io/vc-data-model/)。
+感谢 Manu Sporny 编写了大部分源材料，感谢 Tzviya Siegman 起草了本文档，感谢 Oliver Terbu 和 Ken Ebert 添加了可验证凭证的示例。

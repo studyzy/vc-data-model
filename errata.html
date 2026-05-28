@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
   <!--
     The data-githubrepo attribute provides the owner/repo name on github. For W3C repositories most of those are of the
     form 'w3c/XXX', although there are groups that have their own owner for their repository.
   -->
   <head data-githubrepo="w3c/vc-data-model">
     <meta charset="UTF-8">
-    <title>Open Errata for the Verifiable Credentials Data Model v2.0</title>
+    <title>可验证凭证数据模型（Verifiable Credentials Data Model）v2.0 公开勘误表</title>
     <link rel="stylesheet" type="text/css" href="https://w3c.github.io/display_errata/assets/errata.css"/>
     <script src="https://www.w3.org/scripts/jquery/1.11/jquery.min.js"></script>
     <script src="https://w3c.github.io/display_errata/assets/moment.min.js" type="text/javascript"></script>
@@ -24,31 +24,31 @@
     <header>
       <p class="banner"><a accesskey="W" href="/"><img width="72" height="48" alt="W3C" src="https://www.w3.org/Icons/w3c_home" /></a> </p>
       <br />
-      <h1 class="title">Open Errata for the Verifiable Credentials Data Model v2.0</h1>
+      <h1 class="title">可验证凭证数据模型（Verifiable Credentials Data Model）v2.0 公开勘误表</h1>
       <dl>
-        <dt>Latest errata update:</dt>
+        <dt>最新勘误表更新：</dt>
         <dd><span id="date"></span></dd>
-        <dt>Number of recorded errata:</dt>
+        <dt>已记录的勘误数量：</dt>
         <dd><span id="number"></span></dd>
-        <dt>Link to all errata:</dt>
+        <dt>所有勘误链接：</dt>
         <dd><span id="errata_link"></span></dd>
       </dl>
 
       <section data-notoc>
-        <h1>How to Submit an Erratum?</h1>
-        <p>Errata are introduced and stored in the <a href="https://github.com/w3c/vc-data-model/issues/">issue list of the group‘s GitHub repository</a>. The workflow to add a new erratum is as follows:</p>
+        <h1>如何提交勘误？</h1>
+        <p>勘误在<a href="https://github.com/w3c/vc-data-model/issues/">该工作组 GitHub 仓库的议题列表</a>中提出和存储。添加新勘误的工作流程如下：</p>
         <ul>
-          <li>An issue is raised for a possible erratum. The label of the issue SHOULD be set to “<code>PossibleErratum</code>”. One erratum might have several labels.</li>
-          <li>The community discusses the issue. If it is accepted as a genuine erratum, the label “<code>Errata</code>” is added to the entry and the “<code>PossibleErratum</code>” label should be removed. Additionally, a new comment on the issue MAY be added, beginning with the word "Summary:" (if such a summary is useful based on the discussion).</li>
-          <li>Issues labeled as “<code>Errata</code>” are displayed below.</li>
-          <li>If the community rejects the issue as an erratum, the issue should be closed (but they will not be removed from the listing below, to ensure a historical record).</li>
-          <li>Each errata may also be labelled as “<code>Editorial</code>”; editorial errata are listed separately from the substantive ones.</li>
-          <li>ALL substantive errata are generally expected to have corresponding test(s), either in the form of new tests or modifications to existing tests, or must include the rationale for why test updates are not required for the erratum.</li>
+          <li>针对可能的勘误提出一个议题。该议题的标签应当（SHOULD）设置为"<code>PossibleErratum</code>"。一个勘误可能有多个标签。</li>
+          <li>社区对该议题进行讨论。如果被确认为真正的勘误，则在条目上添加"<code>Errata</code>"标签，并应移除"<code>PossibleErratum</code>"标签。此外，可以（MAY）在该议题上添加一条新评论，以"Summary:"开头（如果根据讨论内容此类摘要是有用的）。</li>
+          <li>标记为"<code>Errata</code>"的议题显示在下方。</li>
+          <li>如果社区拒绝将该议题作为勘误，则应关闭该议题（但不会从下方列表中移除，以确保有历史记录）。</li>
+          <li>每条勘误也可以标记为"<code>Editorial</code>"；编辑性勘误与实质性勘误分开列出。</li>
+          <li>所有实质性勘误通常都应有对应的测试，可以是新测试或对现有测试的修改，或者必须（MUST）包含说明为何该勘误不需要更新测试的理由。</li>
         </ul>
 
-        <p>This report contains a reference to all open issues with the label <code>Errata</code>.</p>
+        <p>本报告包含对所有带有 <code>Errata</code> 标签的未关闭议题的引用。</p>
 
-        <p>If you have problems following this process, but you want nevertheless to report an error, you can also contact the staff contact of the Working Group, <a href="mailto:ivan@w3.org">ivan</a>.</p>
+        <p>如果您在遵循此流程时遇到问题，但仍希望报告错误，您也可以联系工作组的 W3C 工作人员联系人 <a href="mailto:ivan@w3.org">ivan</a>。</p>
       </section>
     </header>
 
@@ -57,33 +57,31 @@
     <main>
       <!-- The data-erratalabel should include one label that filters the errata -->
       <section data-nolabel>
-        <h1>Open Errata on the “Verifiable Credentials Data Model v2.0”</h1>
+        <h1>"可验证凭证数据模型（Verifiable Credentials Data Model）v2.0"的公开勘误表</h1>
         <dl>
-          <dt>Latest Published Version:</dt>
+          <dt>最新发布版本：</dt>
           <dd><a href="https://www.w3.org/TR/vc-data-model-2.0/">https://www.w3.org/TR/vc-data-model-2.0/</a></dd>
-          <dt>Editor’s draft:</dt>
+          <dt>编辑草案：</dt>
           <dd><a href="https://w3c.github.io/vc-data-model/">https://w3c.github.io/vc-data-model/</a></dd>
-          <dt>Latest Publication Date:</dt>
-          <dd>15 May 2025</dd>
+          <dt>最新发布日期：</dt>
+          <dd>2025年5月15日</dd>
         </dl>
         <section id="first">
-          <h2>Substantive Issues</h2>
+          <h2>实质性问题</h2>
         </section>
         <section id="last">
-          <h2>Editorial Issues</h2>
+          <h2>编辑性问题</h2>
         </section>
       </section>
     </main>
 
     <footer>
       <address><a href="mailto:ivan@w3.org" class=''>ivan</a>, &lt;ivan@w3.org&gt;, (W3C)</address>
+      <address>中文翻译：<a href="https://github.com/studyzy/">曾毅</a>（<a href="https://www.cnblogs.com/studyzy">深蓝居</a>）</address>
       <p class="copyright">
-        <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © <span class="todo">2025</span>
-        World Wide Web Consortium.
-        W3C® <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-        <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>, and
-        <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a>
-        rules apply.
+        <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">版权</a> © <span class="todo">2025</span>
+        万维网联盟（World Wide Web Consortium）。
+        W3C® <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">责任</a>、<a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">商标</a>和<a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">宽松文档许可</a>规则适用。
       </p>
     </footer>
   </body>
