@@ -367,7 +367,7 @@ table.simple tbody tr:last-of-type {
         </p>
       </section>
 
-      <section class="informative">
+      <section id="ecosystem-overview" class="informative">
         <h3>生态系统概述</h3>
 
         <p>
@@ -574,7 +574,7 @@ table.simple tbody tr:last-of-type {
       </dl>
     </section>
 
-    <section class="informative">
+    <section id="core-data-model" class="informative">
       <h2>核心数据模型</h2>
 
       <p>
@@ -812,14 +812,14 @@ arrow, to a separate rectangle, containing a single text field:
 
     </section>
 
-    <section class="normative">
+    <section id="basic-concepts" class="normative">
       <h2>基本概念</h2>
 
       <p>
 本节介绍本规范的一些基本概念，为文档后面的[[[#advanced-concepts]]]做准备。
       </p>
 
-      <section class="informative">
+      <section id="getting-started" class="informative">
         <h3>快速入门</h3>
 
         <p>
@@ -923,7 +923,7 @@ Defined in Section [[[#evidence]]].
 
       </section>
 
-      <section>
+      <section id="contexts">
         <h3>上下文</h3>
 
         <p>
@@ -978,7 +978,7 @@ Defined in Section [[[#evidence]]].
 
       </section>
 
-      <section>
+      <section id="identifiers">
         <h3>标识符</h3>
 
         <p>
@@ -1028,7 +1028,7 @@ Defined in Section [[[#evidence]]].
         </p>
       </section>
 
-      <section>
+      <section id="types">
         <h3>类型</h3>
 
         <p>
@@ -1194,7 +1194,7 @@ Defined in Section [[[#evidence]]].
 
       </section>
 
-      <section>
+      <section id="names-and-descriptions">
         <h3>名称和描述</h3>
 
         <p>
@@ -1339,7 +1339,7 @@ in the [[[JSON-LD11]]] specification.
         </pre>
       </section>
 
-      <section>
+      <section id="issuer">
         <h3>颁发者</h3>
 
         <p>
@@ -1416,7 +1416,7 @@ in the [[[JSON-LD11]]] specification.
 
       </section>
 
-      <section>
+      <section id="credential-subject">
         <h3>凭证主体</h3>
 
         <p>
@@ -1490,7 +1490,7 @@ multiple [=subjects=] with the `credentialSubject` property.
 
       </section>
 
-      <section>
+      <section id="validity-period">
         <h3>有效期</h3>
 
         <p>
@@ -1543,7 +1543,7 @@ multiple [=subjects=] with the `credentialSubject` property.
 
       </section>
 
-      <section>
+      <section id="status">
         <h3>状态</h3>
 
         <p>
@@ -1649,7 +1649,7 @@ multiple [=subjects=] with the `credentialSubject` property.
 
       </section>
 
-      <section>
+      <section id="data-schemas">
         <h3>数据模式</h3>
 
         <p>
@@ -1729,7 +1729,7 @@ that it issues:
 
       </section>
 
-      <section>
+      <section id="securing-mechanisms">
         <h3>安全机制</h3>
 
         <p>
@@ -2063,7 +2063,7 @@ self-asserted [=verifiable credential=] holding [=claims=] about the
 
     </section>
 
-    <section>
+    <section id="advanced-concepts">
       <h2>高级概念</h2>
 
       <p>
@@ -2144,7 +2144,7 @@ the following:
         </p>
       </section>
 
-      <section>
+      <section id="extensibility">
         <h3>可扩展性</h3>
 
         <p>
@@ -2303,7 +2303,7 @@ machine-readable vocabulary using [[[?RDF-SCHEMA]]].
         </section>
       </section>
 
-      <section>
+      <section id="integrity-of-related-resources">
         <h2>关联资源的完整性</h2>
         <p>
 在[=verifiable credential=]中包含指向外部资源的链接时，希望知道该资源自[=verifiable credential=]颁发以来是否已被修改。这适用于远程检索外部资源的情况，也适用于[=issuer=]和/或[=verifier=]可能本地缓存了资源副本的情况。还可能希望知道[=verifiable credential=]中使用的JSON-LD上下文在[=verifier=]使用时与[=issuer=]使用时的内容相同。
@@ -2420,7 +2420,7 @@ Each object associated with `relatedResource` MUST contain at least a
 
       </section>
 
-      <section>
+      <section id="refreshing">
         <h3>刷新</h3>
 
         <p>
@@ -2481,7 +2481,7 @@ thereby bypassing the [=holder=].
 
       </section>
 
-      <section>
+      <section id="terms-of-use">
         <h3>使用条款</h3>
 
         <p>
@@ -2580,7 +2580,7 @@ Credentials Implementation Guidelines [[?VC-IMP-GUIDE]] document.
 
       </section>
 
-      <section>
+      <section id="evidence">
         <h3>证据</h3>
 
         <p>
@@ -2676,7 +2676,7 @@ information about securing mechanisms, see Section [[[#securing-mechanisms]]].
 
       </section>
 
-      <section>
+      <section id="zero-knowledge-proofs">
         <h3>零知识证明</h3>
 
         <p>
@@ -3010,7 +3010,7 @@ for additional guidance.
 
       </section>
 
-      <section>
+      <section id="verifiable-credential-graphs">
         <h3>可验证凭证图</h3>
 
         <p>
@@ -3034,7 +3034,7 @@ global identifier, such as a URL.
         </p>
       </section>
 
-      <section>
+      <section id="securing-mechanism-specifications">
         <h3>安全机制规范</h3>
 
         <p>
@@ -3139,7 +3139,7 @@ section of the [[[?VC-EXTENSIONS]]] document.
 
     </section>
 
-    <section>
+    <section id="syntaxes">
       <h2>语法</h2>
 
       <p>
@@ -3415,7 +3415,7 @@ as <a data-cite="RFC7231#rfc.section.6.5.13">`415 Unsupported Media Type`</a>.
         </section>
       </section>
 
-        <section class="informative">
+        <section id="type-specific-credential-processing" class="informative">
           <h2>类型特定凭证处理</h2>
 
           <p>
@@ -3515,7 +3515,7 @@ exchange happens is explicitly stated for both processing mechanisms by using
 建议实现者注意，本节中的算法包含实现用于测试与本规范合规性的最低限度检查集。预期实现提供额外检查以报告有助于开发者调试潜在问题的有用警告。同样，实现可能提供额外检查以报告新类型的错误来阻止有害内容。这些额外检查中的任何一项都可能被整合到本规范的未来版本中。
       </p>
 
-      <section class="normative">
+      <section id="validation" class="normative">
         <h3>验证</h3>
 
         <p>
@@ -3640,7 +3640,7 @@ https://www.w3.org/TR/vc-data-model#RANGE_ERROR
 
     </section>
 
-    <section class="informative">
+    <section id="privacy-considerations" class="informative">
       <h2>隐私注意事项</h2>
 
       <p>
@@ -3712,7 +3712,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
         </p>
       </section>
 
-      <section class="informative">
+      <section id="personally-identifiable-information" class="informative">
         <h3>个人可识别信息</h3>
 
         <p>
@@ -3732,7 +3732,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
         </p>
       </section>
 
-      <section class="informative">
+      <section id="identifier-based-correlation" class="informative">
         <h3>基于标识符的关联</h3>
 
         <p>
@@ -3803,7 +3803,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
         </p>
       </section>
 
-      <section class="informative">
+      <section id="metadata-based-correlation" class="informative">
         <h3>基于元数据的关联</h3>
 
         <p>
@@ -3954,7 +3954,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
         </p>
       </section>
 
-      <section class="informative">
+      <section id="correlation-during-validation" class="informative">
         <h3>验证期间的关联</h3>
 
         <p>
@@ -4038,7 +4038,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
         </p>
       </section>
 
-      <section class="informative">
+      <section id="patterns-of-use" class="informative">
         <h3>使用模式</h3>
 
         <p>
@@ -4412,7 +4412,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
       </section>
     </section>
 
-    <section class="informative">
+    <section id="internationalization-considerations" class="informative">
       <h2>国际化注意事项</h2>
 
       <p>
@@ -4427,11 +4427,11 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
 本节概述了使用此数据模型时需要考虑的一般国际化注意事项，旨在重点介绍实施者可能有兴趣阅读的<em>Web 上的字符串：语言和方向元数据</em>文档 [[STRING-META]] 的特定部分。
       </p>
 
-      <section>
+      <section id="language-and-base-direction">
         <h3>语言和基本方向</h3>
 
         <p>
-强烈鼓励数据发布者阅读<em>Web 上的字符串：语言和方向元数据</em>文档 [[STRING-META]] 中关于跨语法表达的部分，以确保在多种表达语法（如 [[JSON-LD11]]、[[JSON]] 和 CBOR [[?RFC7049]]）之间表达语言和<dfn data-cite="i18n-glossary">基本方向</dfn>信息是可能的。
+强烈鼓励数据发布者阅读<em>Web 上的字符串：语言和方向元数据</em>文档 [[STRING-META]] 中关于跨语法表达的部分，以确保在多种表达语法（如 [[JSON-LD11]]、[[JSON]] 和 CBOR [[?RFC7049]]）之间表达语言和<dfn data-cite="i18n-glossary" data-lt="base direction">基本方向</dfn>信息是可能的。
         </p>
 
         <p>
@@ -4541,7 +4541,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
 
     </section>
 
-    <section class="appendix informative">
+    <section id="verification" class="appendix informative">
       <h2>验证（确认有效性）</h2>
 
       <p>
@@ -4678,7 +4678,7 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
 
       </section>
 
-      <section class="informative">
+      <section id="validity-periods" class="informative">
         <h3>有效期</h3>
 
         <p>
@@ -4729,10 +4729,10 @@ href="https://www.w3.org/TR/UAAG20/#def-user-agent">用户代理</a>）会通过
 
     </section>
 
-    <section class="appendix">
+    <section id="contexts-vocabularies-types-and-credential-schemas" class="appendix">
       <h2>上下文、词汇表、类型和凭证模式</h2>
 
-      <section class="normative">
+      <section id="base-context" class="normative">
         <h3>基础上下文</h3>
 
         <p>
@@ -4962,7 +4962,7 @@ The canonical mapping consists of the lexical-to-value mapping.
       </section>
     </section>
 
-    <section class="appendix informative">
+    <section id="iana-considerations" class="appendix informative">
       <h2>IANA 注意事项</h2>
 
       <p>
@@ -5076,7 +5076,7 @@ W3C Verifiable Credentials Working Group
 
     </section>
 
-    <section class="appendix informative">
+    <section id="additional-diagrams-for-verifiable-presentations" class="appendix informative">
       <h2>可验证展示的附加图示</h2>
 
       <p>
